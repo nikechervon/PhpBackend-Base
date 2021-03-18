@@ -1,0 +1,18 @@
+{
+    "name": "olux/task1",
+    "description": "Test task 1 for the Digital Spectr academy",
+    "authors": [
+        {
+            "name": "chervon",
+            "email": "kek.chervon@gmail.com"
+        }
+    ],
+    "require": {
+        "izniburak/router": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- My CSS file -->
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <title>Leap year</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h3>Enter the year and find out whether it is a leap year or not</h3>
+
+        <br><br><br>
+
+        <div class="row g-3 form-body">
+
+            <div class="col-auto">
+                <label for="year" class="visually-hidden">Year</label>
+                <input type="text" class="form-control" id="year" placeholder="Enter year...">
+            </div>
+
+            <div class="col-auto">
+                <button class="btn btn-primary mb-3" id="submit-year" onclick="leapYear.check()">
+                    Check for Leap Year
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Option 2: Jquery -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Option 3: My JS file -->
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>
