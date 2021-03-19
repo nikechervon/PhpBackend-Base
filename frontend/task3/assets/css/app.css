@@ -1,0 +1,29 @@
+body {
+    margin-top: 50px;
+}
+
+.container .form-body {
+    margin-bottom: 15px;
+}
+
+.container .error {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit, sans-serif;
+}
+
+.container .response-message {
+    color: blue;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: inherit, sans-serif;
+}
+
+.col-auto {
+    width: 300px;
+}
+
+.words__list_item {
+    font-size: 20px;
+}

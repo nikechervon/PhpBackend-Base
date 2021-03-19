@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Мой CSS файл -->
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <title>Смузи и хипстеры</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Введите кол-во хипстеров и кол-во смузи, <br> и узнаете сколько смузи выпьет каждый хипстер:</h2>
+
+        <br><br>
+
+        <div class="row g-3 form-body">
+
+            <div class="col-auto">
+                <label for="hipsters-count" class="visually-hidden">Кол-во хипстеров</label>
+                <input type="number" class="form-control" id="hipsters-count" placeholder="Введите кол-во хипстеров...">
+            </div>
+
+            <div class="col-auto">
+                <label for="smoothies-count" class="visually-hidden">Кол-во смузи</label>
+                <input type="number" class="form-control" id="smoothies-count" placeholder="Введите кол-во смузи...">
+            </div>
+
+            <div class="col-auto">
+                <button class="btn btn-primary mb-3" id="submit-smoothies" onclick="hipstersAndSmoothies.getResponse()">
+                    Получить ответ
+                </button>
+            </div>
+
+        </div>
+
+        <span class="response-message"></span>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Option 2: Jquery -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Option 3: Мой JS файл -->
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>
