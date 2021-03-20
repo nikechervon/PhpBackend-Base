@@ -55,10 +55,13 @@ class MainController
     {
         // Callback фильтрации
         $callback = function ($word) use ($prefix) {
-            $word = htmlspecialchars(trim($word));
-            return str_starts_with($word, $prefix);
+            $word = htmlspecialchars(
+                trim($word)
+            );
+            return mb_stripos($word, $prefix) === 0;
         };
 
+        // Массив отфильтрованных слов
         $filteredWords = array_filter($words, $callback);
         return array_values($filteredWords);
     }
