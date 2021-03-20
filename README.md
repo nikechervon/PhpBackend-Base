@@ -60,7 +60,7 @@
 1. Клонируем проект в корневую папку доменов вашего сервера:
    
    ```shell
-   $ git clone https://github.com/izniburak/php-router.git
+   $ git clone https://github.com/nikechervon/PhpBackend-Base.git
    ```
 <br>
 
