@@ -32,13 +32,12 @@ class YearService
         }
     }
 
-    #[Pure]
     /**
      * Проверка на високосный год
      * @param int $year
      * @return bool
      */
-    private function isLeap(int $year): bool
+    #[Pure] private function isLeap(int $year): bool
     {
         return (bool)date(
             "L", mktime(0, 0, 0, 7, 7, $year)

@@ -7,19 +7,18 @@ use App\JsonResponse;
 use App\Renderable;
 
 /**
- * Class InputErrorException
+ * Class HipstersInputEmptyException
  * @package App\Exceptions
  */
-class NotLeapYearException extends \ErrorException implements Renderable
+class HipstersInputErrorException extends \ErrorException implements Renderable
 {
     /**
-     * Возвращает ответ как JSON
      * @return string
      */
     public function render(): string
     {
         return JsonResponse::render(
-            ResponseConstants::NOT_LEAP_YEAR_RESPONSE_CODE
+            ResponseConstants::HIPSTERS_INPUT_ERROR_RESPONSE_CODE
         );
     }
 }

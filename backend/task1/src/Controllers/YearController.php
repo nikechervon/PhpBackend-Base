@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\Pure;
 use App\JsonResponse;
 
 /**
- * Class MainController
+ * Class YearController
  * @package App\Controllers
  */
 class YearController extends BaseController
@@ -18,11 +18,10 @@ class YearController extends BaseController
      */
     private YearService $yearService;
 
-    #[Pure]
     /**
      * YearController constructor.
      */
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->yearService = new YearService();
     }

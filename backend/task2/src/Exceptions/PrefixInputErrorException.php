@@ -7,10 +7,10 @@ use App\JsonResponse;
 use App\Renderable;
 
 /**
- * Class InputErrorException
+ * Class PrefixInputErrorException
  * @package App\Exceptions
  */
-class NotLeapYearException extends \ErrorException implements Renderable
+class PrefixInputErrorException extends \ErrorException implements Renderable
 {
     /**
      * Возвращает ответ как JSON
@@ -19,7 +19,7 @@ class NotLeapYearException extends \ErrorException implements Renderable
     public function render(): string
     {
         return JsonResponse::render(
-            ResponseConstants::NOT_LEAP_YEAR_RESPONSE_CODE
+            ResponseConstants::PREFIX_INPUT_ERROR_RESPONSE_CODE
         );
     }
 }

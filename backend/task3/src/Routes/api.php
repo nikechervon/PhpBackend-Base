@@ -1,4 +1,4 @@
 <?php
 
 // Роут обработчика (POST)
-$router->post('/getSmoothiesCountForHipsters',  'MainController@getSmoothiesCountForHipsters');
+$router->post('/getSmoothiesForHipsters',  'SmoothiesController@getCountForHipsters');

@@ -13,6 +13,7 @@ use App\Renderable;
 class InputErrorException extends \ErrorException implements Renderable
 {
     /**
+     * Возвращает ответ как JSON
      * @return string
      */
     public function render(): string
