@@ -67,12 +67,12 @@
 2. Запустите скрипт для установки всех необходимых библиотек:
 
    ```shell
-   $ sh digital_spectr_academy/backend/bash/build.sh
+   $ sh digital-spectr.loc/backend/bash/build.sh
    ```
 <br>
 
 3. Запускайте сервер и переходите к стартовой странице:
 
    ```
-   http://digital_spectr_academy/frontend/
+   http://digital-spectr.loc/frontend/
    ```
