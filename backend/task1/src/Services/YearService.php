@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Exceptions\InputErrorException;
 use App\Exceptions\NotLeapYearException;
-use App\Renderable;
 use JetBrains\PhpStorm\Pure;
 
 /**
@@ -33,27 +32,13 @@ class YearService
         }
     }
 
-    /**
-     * Возвращает исключение
-     * @param \Exception $exception
-     * @return mixed
-     */
-    public function renderException(\Exception $exception): mixed
-    {
-        if ($exception instanceof Renderable) {
-            return $exception->render();
-        }
-
-        return $exception->getMessage();
-    }
-
     #[Pure]
     /**
      * Проверка на високосный год
      * @param int $year
      * @return bool
      */
-    public function isLeap(int $year): bool
+    private function isLeap(int $year): bool
     {
         return (bool)date(
             "L", mktime(0, 0, 0, 7, 7, $year)
