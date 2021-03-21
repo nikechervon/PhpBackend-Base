@@ -36,7 +36,7 @@ const hipstersAndSmoothies = {
         formData.append('smoothiesCount', smoothiesCount.val());
 
         $.ajax({
-            url: '/backend/task3/getSmoothiesCountForHipsters',
+            url: '/backend/task3/getSmoothiesForHipsters',
             type: this.ajaxMethod,
             data: formData,
             cache: false,

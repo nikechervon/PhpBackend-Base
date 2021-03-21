@@ -1,4 +1,4 @@
 <?php
 
 // Роут обработчика (POST)
-$router->post('/check',  'MainController@validationYear');
+$router->post('/check',  'YearController@checkForLeap');
