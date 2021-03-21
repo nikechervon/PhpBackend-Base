@@ -1,6 +1,6 @@
 <?php
 
-// Composer autoload
+// Автозагрузка классов
 require __DIR__ . '/vendor/autoload.php';
 
 use App\Application;
@@ -18,7 +18,7 @@ $params = [
 
 $router = new Router($params);
 
-// Роуты
+// Файл роутов
 require __DIR__ . '/src/Routes/api.php';
 
 // Запуск приложения

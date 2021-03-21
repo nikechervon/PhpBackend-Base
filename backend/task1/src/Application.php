@@ -30,6 +30,25 @@ class Application
      */
     public function run(): void
     {
-        $this->router->run();
+        try {
+            $this->router->run();
+
+        } catch (\ErrorException $exception) {
+            echo $this->renderException($exception);
+        }
+    }
+
+    /**
+     * Возвращает исключение
+     * @param \Exception $exception
+     * @return mixed
+     */
+    private function renderException(\Exception $exception): mixed
+    {
+        if ($exception instanceof Renderable) {
+            return $exception->render();
+        }
+
+        return $exception->getMessage();
     }
 }

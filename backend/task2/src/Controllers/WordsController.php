@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Constants\ResponseConstants;
-use App\JsonResponse;
+use App\Exceptions\PrefixErrorException;
+use App\Exceptions\WordsErrorException;
 use App\Services\WordsService;
 use JetBrains\PhpStorm\Pure;
 
@@ -11,7 +11,7 @@ use JetBrains\PhpStorm\Pure;
  * Class WordsController
  * @package App\Controllers
  */
-class WordsController extends BaseController
+class WordsController
 {
     /**
      * @var WordsService
@@ -28,34 +28,12 @@ class WordsController extends BaseController
 
     /**
      * Ищет и возвращает ответ, начинающихся с префикса, в формате JSON.
+     * @throws PrefixErrorException
+     * @throws WordsErrorException
      * @return string
      */
     public function searchByPrefix(): string
     {
-        try {
-            // Инициализация переменных
-            $prefix = htmlspecialchars(trim($_POST['prefix']));
-            $words = $_POST['words'];
-
-            // Валидация
-            $this->wordsService->validation($prefix, $words);
-
-            // Массив слов
-            $wordsList = explode(',', $words);
-
-            // Массив слов, начинающийся с префикса
-            $filteredWords = $this->wordsService->getByPrefix($prefix, $wordsList);
-
-            // Возвращает ответ
-            return JsonResponse::render(
-                ResponseConstants::SUCCESS_RESPONSE_CODE,
-                $filteredWords
-            );
-
-        } catch (\ErrorException $exception) {
-
-            // Рендеринг исключения
-            return $this->renderException($exception);
-        }
+        return $this->wordsService->searchByPrefix();
     }
 }

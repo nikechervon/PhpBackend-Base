@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Constants\ResponseConstants;
 use App\Exceptions\PrefixErrorException;
 use App\Exceptions\WordsErrorException;
+use App\JsonResponse;
 
 /**
  * Class WordsService
@@ -12,7 +14,35 @@ use App\Exceptions\WordsErrorException;
 class WordsService
 {
     /**
-     * Выполняет валидацию полей
+     * Ищет и возвращает ответ, начинающихся с префикса, в формате JSON.
+     * @return string
+     * @throws PrefixErrorException
+     * @throws WordsErrorException
+     */
+    public function searchByPrefix(): string
+    {
+        // Инициализация переменных
+        $prefix = htmlspecialchars(trim($_POST['prefix']));
+        $words = $_POST['words'];
+
+        // Валидация
+        $this->validation($prefix, $words);
+
+        // Массив слов
+        $wordsList = explode(',', $words);
+
+        // Массив слов, начинающийся с префикса
+        $filteredWords = $this->getByPrefix($prefix, $wordsList);
+
+        // Возвращает ответ
+        return JsonResponse::render(
+            ResponseConstants::SUCCESS_RESPONSE_CODE,
+            $filteredWords
+        );
+    }
+
+    /**
+     * Выполняет валидацию префикса и строку слов
      * @param string $prefix
      * @param string $words
      * @throws PrefixErrorException

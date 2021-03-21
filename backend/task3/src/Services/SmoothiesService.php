@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Constants\ResponseConstants;
 use App\Exceptions\HipstersInputEmptyException;
 use App\Exceptions\HipstersInputErrorException;
 use App\Exceptions\SmoothiesInputEmptyException;
 use App\Exceptions\SmoothiesInputErrorException;
+use App\JsonResponse;
 
 /**
  * Class SmoothiesService
@@ -13,6 +15,33 @@ use App\Exceptions\SmoothiesInputErrorException;
  */
 class SmoothiesService
 {
+    /**
+     * Возвращает ответ с кол-вом смузи, которые выпил каждый хипстер, в формате JSON
+     * @return string
+     * @throws HipstersInputEmptyException
+     * @throws HipstersInputErrorException
+     * @throws SmoothiesInputEmptyException
+     * @throws SmoothiesInputErrorException
+     */
+    public function getCountForHipsters(): string
+    {
+        // Инициализация переменных
+        $hipstersCount = (int) htmlspecialchars($_POST['hipstersCount']);
+        $smoothiesCount = (int) htmlspecialchars($_POST['smoothiesCount']);
+
+        // Валидация
+        $this->validation($hipstersCount, $smoothiesCount);
+
+        // Кол-во смузи для одного хипстера
+        $smoothiesCountForHipster = floor($smoothiesCount / $hipstersCount);
+
+        // Возвращает ответ
+        return JsonResponse::render(
+            ResponseConstants::SUCCESS_RESPONSE_CODE,
+            $smoothiesCountForHipster
+        );
+    }
+
     /**
      * Выполняет валидацию полей
      * @param int $hipstersCount
@@ -23,7 +52,7 @@ class SmoothiesService
      * @throws SmoothiesInputErrorException
      * @return void
      */
-    public function validation(int $hipstersCount, int $smoothiesCount): void
+    private function validation(int $hipstersCount, int $smoothiesCount): void
     {
         // Если не указано кол-во хипстеров
         if (empty($hipstersCount)) {
