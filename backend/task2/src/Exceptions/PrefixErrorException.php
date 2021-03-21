@@ -7,10 +7,10 @@ use App\JsonResponse;
 use App\Renderable;
 
 /**
- * Class PrefixInputErrorException
+ * Class PrefixErrorException
  * @package App\Exceptions
  */
-class WordsInputErrorException extends \ErrorException implements Renderable
+class PrefixErrorException extends \ErrorException implements Renderable
 {
     /**
      * Возвращает ответ как JSON
@@ -19,7 +19,7 @@ class WordsInputErrorException extends \ErrorException implements Renderable
     public function render(): string
     {
         return JsonResponse::render(
-            ResponseConstants::WORDS_INPUT_ERROR_RESPONSE_CODE
+            ResponseConstants::PREFIX_INPUT_ERROR_RESPONSE_CODE
         );
     }
 }

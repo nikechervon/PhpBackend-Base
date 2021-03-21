@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Exceptions\InputErrorException;
-use App\Exceptions\NotLeapYearException;
 use JetBrains\PhpStorm\Pure;
 
 /**
@@ -16,7 +15,6 @@ class YearService
      * Выполняет валидацию и выдает исключения
      * @param $year
      * @throws InputErrorException
-     * @throws NotLeapYearException
      * @return void
      */
     public function validation($year): void
@@ -25,11 +23,6 @@ class YearService
         if (preg_match("/[\D]/", $year) || empty($year)) {
             throw new InputErrorException();
         }
-
-        // Проверка на високосный год
-        if (!$this->isLeap((int) $year)) {
-            throw new NotLeapYearException();
-        }
     }
 
     /**
@@ -37,7 +30,7 @@ class YearService
      * @param int $year
      * @return bool
      */
-    #[Pure] private function isLeap(int $year): bool
+    #[Pure] public function isLeap(int $year): bool
     {
         return (bool)date(
             "L", mktime(0, 0, 0, 7, 7, $year)

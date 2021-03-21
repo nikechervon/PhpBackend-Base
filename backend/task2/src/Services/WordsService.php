@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Exceptions\PrefixInputErrorException;
-use App\Exceptions\WordsInputErrorException;
+use App\Exceptions\PrefixErrorException;
+use App\Exceptions\WordsErrorException;
 
 /**
  * Class WordsService
@@ -15,20 +15,20 @@ class WordsService
      * Выполняет валидацию полей
      * @param string $prefix
      * @param string $words
-     * @throws PrefixInputErrorException
-     * @throws WordsInputErrorException
+     * @throws PrefixErrorException
+     * @throws WordsErrorException
      * @return void
      */
     public function validation(string $prefix, string $words): void
     {
         // Проверка на пустое поле префикса
         if (empty($prefix)) {
-            throw new PrefixInputErrorException();
+            throw new PrefixErrorException();
         }
 
         // Проверка на пустое поле для ввода слов
         if (empty($words)) {
-            throw new WordsInputErrorException();
+            throw new WordsErrorException();
         }
     }
 

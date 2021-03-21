@@ -30,7 +30,7 @@ class YearController extends BaseController
      * Проверяет введенные данные и возвращает ответ в формате JSON
      * @return string
      */
-    public function check(): string
+    public function checkForLeap(): string
     {
         try {
             // Введенный год
@@ -39,7 +39,16 @@ class YearController extends BaseController
             // Валидация
             $this->yearService->validation($year);
 
-            // Возвращает ответ
+            // Если год невисокосный
+            if (!$this->yearService->isLeap((int) $year)) {
+
+                // Возвращает ответ (год невисокосный)
+                return JsonResponse::render(
+                    ResponseConstants::NOT_LEAP_YEAR_RESPONSE_CODE
+                );
+            }
+
+            // Возвращает ответ (год високосный)
             return JsonResponse::render(
                 ResponseConstants::LEAP_YEAR_RESPONSE_CODE
             );
