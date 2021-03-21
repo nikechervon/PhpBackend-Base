@@ -3,9 +3,7 @@
 namespace App\Controllers;
 
 use App\Constants\ResponseConstants;
-use App\Exceptions\InputErrorException;
-use App\Exceptions\NotLeapYearException;
-use App\Renderable;
+use App\Services\YearService;
 use JetBrains\PhpStorm\Pure;
 use App\JsonResponse;
 
@@ -15,6 +13,20 @@ use App\JsonResponse;
  */
 class YearController
 {
+    /**
+     * @var YearService
+     */
+    private YearService $yearService;
+
+    #[Pure]
+    /**
+     * YearController constructor.
+     */
+    public function __construct()
+    {
+        $this->yearService = new YearService();
+    }
+
     /**
      * Проверяет введенные данные и возвращает ответ в формате JSON
      * @return string
@@ -26,64 +38,17 @@ class YearController
             $year = htmlspecialchars($_POST['year']);
 
             // Валидация
-            $this->validation($year);
+            $this->yearService->validation($year);
 
             // Возвращает ответ
             return JsonResponse::render(
                 ResponseConstants::LEAP_YEAR_RESPONSE_CODE
             );
 
-        } catch (\ErrorException $e) {
+        } catch (\ErrorException $exception) {
 
             // Рендеринг исключения
-            return $this->renderException($e);
+            return $this->yearService->renderException($exception);
         }
-    }
-
-    /**
-     * Выполняет валидацию и выдает исключения
-     * @param $year
-     * @throws InputErrorException
-     * @throws NotLeapYearException
-     * @return void
-     */
-    private function validation($year): void
-    {
-        // Проверка, что строка состоит только из цифр
-        if (preg_match("/[\D]/", $year) || empty($year)) {
-            throw new InputErrorException();
-        }
-
-        // Проверка на високосный год
-        if (!$this->isLeap((int) $year)) {
-            throw new NotLeapYearException();
-        }
-    }
-
-    /**
-     * Возвращает исключение
-     * @param \Exception $exception
-     * @return mixed
-     */
-    private function renderException(\Exception $exception): mixed
-    {
-        if ($exception instanceof Renderable) {
-            return $exception->render();
-        }
-
-        return $exception->getMessage();
-    }
-
-    #[Pure]
-    /**
-     * Проверка на високосный год
-     * @param int $year
-     * @return bool
-     */
-    private function isLeap(int $year): bool
-    {
-        return (bool)date(
-            "L", mktime(0, 0, 0, 7, 7, $year)
-        );
     }
 }
